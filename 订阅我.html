@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>订阅我</title>
+  <style>
+    body {
+      background-image: linear-gradient(#8c273c, #420713);
+      background-repeat: no-repeat;
+      height: 100vh;
+ 
+      overflow-y: hidden;
+      overflow-x: scroll;
+      background-attachment: fixed;
+      width: 100vw;
+ 
+      min-width: 100vw;
+    }
+ 
+    h1 {
+      text-shadow: 0 0 10px white, 0 0 20px white;
+    }
+ 
+    .flex {
+      text-align: center;
+      width: auto;
+ 
+    }
+ 
+    .incomplete {
+      background-image: linear-gradient(#000000AA 10%, #00000033);
+      padding: 20px;
+      color: white;
+      position: relative;
+      border: 20px solid transparent;
+      background-clip: padding-box;
+      margin: 40px 60px;
+      width: 300px;
+      display: inline-block;
+      text-align: center;
+    }
+ 
+    .incomplete::after {
+ 
+      right: -20px;
+      top: -20px;
+ 
+      border-top: 1px dashed white;
+      border-right: 1px dashed white;
+    }
+ 
+    .incomplete:hover::after {
+      right: -1px;
+      top: -1px;
+ 
+    }
+ 
+    .incomplete:hover::after, .incomplete:hover::before {
+      width: 100%;
+      height: 100%;
+      transition: all ease-in .2s;
+    }
+ 
+    .incomplete:hover::before {
+      bottom: -1px;
+      left: -1px;
+ 
+    }
+ 
+    .incomplete::after, .incomplete::before {
+      pointer-events: none;
+      content: '';
+      display: block;
+      position: absolute;
+      width: 50%;
+      height: 20%;
+      transition: all ease-in .2s;
+    }
+ 
+    .incomplete::before {
+ 
+      bottom: -20px;
+      left: -20px;
+ 
+      border-left: 1px dashed white;
+      border-bottom: 1px dashed white;
+    }
+ 
+    .btn {
+      display: inline-block;
+      color: white;
+      background-size: 4px 1px, 4px 1px, 1px 4px, 1px 4px;
+ 
+      background-image: linear-gradient(90deg, #FFF 50%, transparent 0),
+      linear-gradient(90deg, #FFF 50%, transparent 0), linear-gradient(0deg, #FFF 50%, transparent 0),
+      linear-gradient(0deg, #FFF 50%, transparent 0);
+      background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+      background-position: 0 0, 0 100%, 0 0, 100% 0;
+      outline: 1px solid #FFF;
+      padding: 10px 30px;
+      user-select: none;
+      cursor: pointer;
+      outline-offset: -1px;
+ 
+    }
+ 
+    .btn:hover {
+      outline: none;
+      animation: linearGradientMove .3s infinite linear;
+      box-shadow: inset 0 0 8px 3px #FFFFFF55;
+    }
+ 
+    .btn:active {
+      text-shadow: 0 0 10px white;
+ 
+ 
+    }
+ 
+    .info {
+      padding: 10px 0;
+      color: #FFFFFF88;
+ 
+      user-select: none;
+    }
+ 
+    .info:hover {
+      text-shadow: 0 0 10px white;
+    }
+ 
+    @keyframes linearGradientMove {
+ 
+      100% {
+        background-position: 4px 0, -4px 100%, 0 -4px, 100% 4px;
+      }
+ 
+    }
+ 
+    .box {
+      position: relative;
+ 
+      height: 500px;
+    }
+ 
+    .content {
+      height: 500px;
+      padding: 1rem;
+      box-sizing: border-box;
+      overflow-y: scroll;
+      text-shadow: 0 0 10px white;
+    }
+ 
+    .cube {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      overflow: hidden;
+      clip-path: polygon(0% 0%, 0% 100%, 2px 100%, 2px 2px, calc(100% - 2px) 2px, calc(100% - 2px) calc(100% - 2px), 2px calc(100% - 1px), 2px 100%, 100% 100%, 100% 0%);
+    }
+ 
+    p {
+      position: relative;
+    }
+ 
+    p::after {
+      content: "";
+      display: block;
+      width: 100%;
+      transition: all ease-in .3s;
+      position: absolute;
+      bottom: -9px;
+      left: 0;
+      background-image: linear-gradient(90deg, transparent 10%, white, transparent 90%);
+      height: 2px;
+      opacity: 0;
+    }
+ 
+    p:hover::after {
+      opacity: 1;
+      transition: all ease-in .3s;
+    }
+ 
+    .cube::before {
+      content: '';
+      position: absolute;
+      z-index: -2;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      animation: rotate 2s linear infinite;
+      background: conic-gradient(transparent, rgb(220, 179, 220), transparent 30%);
+ 
+    }
+ 
+    @keyframes rotate {
+      100% {
+        transform: rotate(1turn);
+      }
+    }
+ 
+    @keyframes opacityChange {
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: .5;
+      }
+    }
+ 
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    
+  </style>
+  <script>
+    let tObj
+    window.onload = () => {
+      tObj = document.getElementById('txt')
+      let txt = tObj.innerText
+      txt = txt.replaceAll('  ', '')
+ 
+      let krr = txt.split('\n')
+      let brr = krr.filter(item => item)
+      console.log(brr)
+      let html = ''
+      brr.forEach(item => {
+        html = html.concat('<p>' + item + '</p>')
+      })
+      console.log(html)
+ 
+    }
+  </script>
+</head>
+<body>
+<div class="flex">
+  <div class="incomplete">
+    <h1>普通订阅</h1>
+    <div class="box">
+      <div class="content">
+        <h2>订阅方案</h2>
+        <h5>价格：￥5~￥50/年</h5>
+        <p>当您已经按照此价钱订阅了小刘之后</p>
+        <p>请加一下小刘的微信（17734258540）</p>
+        <p>当有什么社区活动</p>
+        <p>或者</p>
+        <p>填写问卷得现金得活动时，</p>
+        <p>小刘会第一时间通知您。</p>
+        <p>另外，</p>
+        <p>小刘会在每年春节到来之际，</p>
+        <p>随机挑选一些幸运订阅者</p>
+        <p>并赠送一份礼物作为订阅回报。</p>
+      </div>
+      <div class="cube"></div>
+    </div>
+    <div class="info">更多有趣的订阅方案有待研究...</div>
+    <div>
+      <div class="btn" onclick="window.open('https://programapeinn.github.io/blog/订阅.html');">订阅</div>
+    </div>
+  </div>
+  <div class="incomplete">
+    <h1>会员订阅</h1>
+    <div class="box">
+      <div class="content">
+        <h2>订阅方案</h2>
+        <h5>价格：￥50~￥200/年</h5>
+        <p>当您已经按照此价钱订阅了小刘之后</p>
+        <p>请加一下小刘的微信（17734258540）</p>
+        <p>您的活动得知权</p>
+        <p>与普通订阅方案相同，</p>
+        <p>此外，</p>
+        <p>小刘在CSDN的一切付费内容</p>
+        <p>您都可以向小刘免费索要。</p>
+        <p>如果您已经订阅了小刘在CSDN的</p>
+        <p>付费专栏，</p>
+        <p>在小刘的微信里回复“返现”，</p>
+        <p>小刘就会在微信</p>
+        <p>对您订阅所使用的钱进行半价返现。</p>
+        <p>小刘会在每年春节到来之际,</p>
+        <p>对全体会员订阅者赠送一份礼物</p>
+        <p>作为订阅回报。</p>
+        <p>另外，</p>
+        <p>如果您邀请到您的朋友成功</p>
+        <p>订阅小刘，</p>
+        <p>那么请在小刘的微信里</p>
+        <p>回复您朋友们的微信昵称</p>
+        <p>及其订阅方案，</p>
+        <p>小刘会对您和您的朋友</p>
+        <p>进行半价返现。</p>
+      </div>
+      <div class="cube"></div>
+    </div>
+    <div class="info">更多有趣的订阅方案有待研究...</div>
+    <div>
+      <div class="btn" onclick="window.open('https://programapeinn.github.io/blog/订阅.html');">订阅</div>
+    </div>
+  </div>
+  <div class="incomplete">
+    <h1>高级订阅</h1>
+    <div class="box">
+      <div class="content">
+        <h2>订阅方案</h2>
+        <h5>价格：￥200/年</h5>
+        <p>当您已经按照此价钱订阅了小刘之后</p>
+        <p>请加一下小刘的微信（17734258540）</p>
+        <p>会员订阅者的特权您都享有。</p>
+        <p>除此之外，</p>
+        <p>您订阅时所用的钱将用于</p>
+        <p>“游戏《地下室三层》开发基金”，</p>
+        <p>即游戏发售之后会得到分红反馈，</p>
+        <p>截至2022年11月7日止，</p>
+        <p>我们会反馈给您0.5%的分红反馈。</p>
+      </div>
+      <div class="cube"></div>
+    </div>
+    <div class="info">更多有趣的订阅方案有待研究...</div>
+    <div>
+      <div class="btn" onclick="window.open('https://programapeinn.github.io/blog/订阅.html');">订阅</div>
+    </div>
+  </div>
+ 
+</div>
+</body>
+</html>
