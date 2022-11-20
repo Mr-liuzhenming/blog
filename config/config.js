@@ -128,7 +128,7 @@ var config = {
     icon: [
         ["./svg/博客.svg", "https://space.bilibili.com/1715213283?spm_id_from=333.1007.0.0", "我的bilbil主页"],
         ["./svg/github.svg", "https://github.com/ProgramApeInn", "我的GitHub主页"],
-        ["./svg/csdn.svg", "http://1.15.234.109:8000", "我的csdn主页"],
+        ["./svg/csdn.svg", "https://blog.csdn.net/weixin_41102528", "我的csdn主页"],
     ],
 
 
